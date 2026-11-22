@@ -1,0 +1,22 @@
+# Segreti (chiave Stripe, ecc.)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node / Vite
+node_modules/
+dist/
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Impostazioni locali di Claude Code
+.claude/settings.local.json
