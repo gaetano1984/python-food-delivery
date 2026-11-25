@@ -3,9 +3,11 @@ import Button from "./Components/Button";
 import FormGroup from "./Components/FormGroup";
 import {z} from "zod";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 //class Login extends Component{
 export default function Login(){
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -29,7 +31,7 @@ export default function Login(){
             axios.post('/api/user/login', data)
                 .then((success) => {
                     sessionStorage.setItem('token', success.data.token);
-                    window.location.href = "/restaurants/list";
+                    navigate('/restaurants/list');
                 })
                 .catch((e) => {
                     console.log(e.response.data);

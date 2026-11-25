@@ -3,11 +3,13 @@ import Button from "./Components/Button";
 import FormGroup from "./Components/FormGroup";
 import {z} from "zod";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 export default function RestaurantList(){
+    const navigate = useNavigate();
     const [restaurants, setRestaurant] = useState([]);
     const redirectRestaurant = (id) => {
-        window.location.href = "/restaurants/"+id;
+        navigate('/restaurants/'+id);
     }
     useEffect(() => {
         axios.get('/api/restaurants/list', {

@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 export default function Ko(){
     return (
         <div>
@@ -11,7 +13,7 @@ export default function Ko(){
                         Riprovare più tardi.
                     </div>                    
                     <div className="grid grid-cols-1 gap-4 p-2 text-center">
-                        <a href="/restaurants/list">Torna alla home</a>
+                        <Link to="/restaurants/list">Torna alla home</Link>
                     </div>
                 </div>
             </div>

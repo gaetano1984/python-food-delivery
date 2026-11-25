@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react"
 import { CartContext } from "./context/CartContext"
+import {Link} from 'react-router-dom';
 
 export default function Ok(){
     const {clearCart} = useContext(CartContext);
@@ -20,7 +21,7 @@ export default function Ok(){
                         L'ordine vi verrà consegnato a breve <br/>
                     </div>                    
                     <div className="grid grid-cols-1 gap-4 p-2 text-center">
-                        <a href="/restaurants/list">Torna alla home</a>
+                        <Link to="/restaurants/list">Torna alla home</Link>
                     </div>
                 </div>
             </div>
