@@ -65,7 +65,7 @@ def check_token(cred: HTTPAuthorizationCredentials | None = Depends(bearer), db:
 def register(item: Register, db: Session = Depends(get_db)):
     result = db.execute(text("select id from users where email = :email"), {"email": item.username}).first()
     if result is not None:
-        raise HTTPException(status_code=409, detail="User already exists")
+        raise HTTPException(status_code=409, detail="Utente già registrato")
     hashed = bcrypt.hashpw(item.password.encode(), bcrypt.gensalt(rounds=12)).decode()
     hashed = hashed.replace("$2b$", "$2y$", 1)   # formato Laravel
     now = datetime.now(timezone.utc).replace(tzinfo=None)

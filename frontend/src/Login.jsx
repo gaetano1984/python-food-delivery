@@ -34,7 +34,7 @@ export default function Login(){
                     navigate('/restaurants/list');
                 })
                 .catch((e) => {
-                    console.log(e.response.data);
+                    console.log(e.response?.data);
                     alert("Utenze non valide");
                 })
             ;

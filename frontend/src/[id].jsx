@@ -9,7 +9,7 @@ export default function Restaurant(){
     const {id} = useParams();
     const {cart, addToCart, removeFromCart, getCartTotal} = useContext(CartContext);
     const [menu ,setMenu] = useState([]);
-    const [props, setProps] = useState([]);
+    const [restaurant, setRestaurant] = useState(null);
 
 
     const placeOrder = () => {
@@ -29,8 +29,7 @@ export default function Restaurant(){
         })
         .then((res) => {
             setMenu(res.data.menu);
-            setProps(res.data.restaurant);
-            console.log(res.data);
+            setRestaurant(res.data.restaurant);
         });
     }, []);
     return (
@@ -41,10 +40,7 @@ export default function Restaurant(){
                         Info del ristorante
                     </div>
                     <div className="p-2">
-                        {props.error !== null && (
-                            <div key="error">{props.error}</div>
-                        )}
-                        {props.hasOwnProperty('error')===false && (
+                        {restaurant && (
                             <div key="menu_heading">
                                 <div className="grid grid-cols-3 gap-4 p-2">
                                     <div className="flex flex-col">
@@ -53,15 +49,15 @@ export default function Restaurant(){
                                     
                                     <div className="flex flex-col justify-between col-span-2">
                                         <div className="font-semibold text-lg">
-                                            {props.name}
+                                            {restaurant.name}
                                         </div>               
                                         <div className="font-extralight pt-3 pb-3">
                                             <span className="bg-emerald-50 text-emerald-700  boder border-black rounded-lg font-medium p-2">
-                                                {props.type}
+                                                {restaurant.type}
                                             </span>
                                         </div>                             
                                         <div className="text-sm font-light">
-                                            {props.address}, {props.city} - {props.CAP}
+                                            {restaurant.address}, {restaurant.city} - {restaurant.CAP}
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +78,7 @@ export default function Restaurant(){
                     </div>
                     <div className="p-2">
                         {cart?.length===0 ? (
-                            <div class="flex items-center justify-center">
+                            <div className="flex items-center justify-center">
                                 <div className="p-4 flex flex-col gap-4 text-center">
                                     <span className="p-3 font-semibold">
                                         Non hai selezionato alcun piatto.
@@ -108,8 +104,8 @@ export default function Restaurant(){
                                                 {(item.price * item.quantity).toFixed(2)}&euro;
                                             </div>
                                             <div className="flex flex-col gap-1">
-                                                <button key="add" className="bg-blue-300  rounded-4xl pl-2 pr-2 text-white" onClick={(() => removeFromCart(item))}>-</button>
-                                                <button key="remove" className="ml-1 bg-blue-300  rounded-4xl pl-2 pr-2 text-white" onClick={(() => addToCart(item))}>+</button>
+                                                <button key="remove" className="bg-blue-300  rounded-4xl pl-2 pr-2 text-white" onClick={(() => removeFromCart(item))}>-</button>
+                                                <button key="add" className="ml-1 bg-blue-300  rounded-4xl pl-2 pr-2 text-white" onClick={(() => addToCart(item))}>+</button>
                                             </div>
                                         </div>
                                     ))}

@@ -47,8 +47,9 @@ export default function Register(){
                     navigate('/login');
                 })
                 .catch((e) => {
-                    console.log(e.response.data);
-                    alert(e.response.data.detail);
+                    console.log(e.response?.data);
+                    const detail = e.response?.data?.detail;
+                    alert(typeof detail === "string" ? detail : "Registrazione non riuscita, riprova");
                 })
             ;
         }

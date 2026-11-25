@@ -19,7 +19,7 @@ export default function RestaurantList(){
             setRestaurant(res.data.restaurants);
         })
         .catch((e) => {
-            console.log(e.response.data);
+            console.log(e.response?.data);
             alert("Utenza non valida");
         });  
     }, []);
@@ -37,7 +37,6 @@ export default function RestaurantList(){
                             </div>                            
                         ) : (
                             restaurants.map((restaurant) => (
-                                <>
                                     <div key={restaurant.id} className="border border-gray-300 rounded-lg">
                                         <div className="h-48 w-full relative">
                                             <img src={"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&auto=format&fit=crop&q=60"} className="h-full w-full object-cover rounded-t-lg" />
@@ -53,7 +52,6 @@ export default function RestaurantList(){
                                             <Button className="bg-blue-400 text-white w-full p-2 rounded-md" text="vedi menu" onClick={() => redirectRestaurant(restaurant.id)} />
                                         </div>
                                     </div>
-                                </>
                             ))                            
                         )}
                     </div>                    
