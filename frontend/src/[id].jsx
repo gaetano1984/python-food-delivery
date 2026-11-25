@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import { CartContext } from "./context/CartContext";
 import Button from "./Components/Button";
 import Menu from "./Pages/Restaurants/Menu";
 import {useParams} from "react-router-dom";
+import api from './api';
 
 export default function Restaurant(){
     const {id} = useParams();
@@ -13,9 +13,7 @@ export default function Restaurant(){
 
 
     const placeOrder = () => {
-        axios.post('/api/order/place', {cart: cart, restaurant_id: id}, {
-            headers: {Authorization: 'Bearer '+sessionStorage.getItem('token')}
-        })
+        api.post('/order/place', {cart: cart, restaurant_id: id})
         .then((success) => {
             window.location.href=success.data.url;
         })
@@ -24,9 +22,7 @@ export default function Restaurant(){
         })
     }
     useEffect(() => {
-        axios.get('/api/restaurants/'+id+'/menu', {
-            headers: {Authorization: 'Bearer '+sessionStorage.getItem('token')}
-        })
+        api.get('/restaurants/'+id+'/menu')
         .then((res) => {
             setMenu(res.data.menu);
             setRestaurant(res.data.restaurant);

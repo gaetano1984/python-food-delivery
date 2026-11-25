@@ -2,8 +2,8 @@ import React, { useState, useEffect, Component } from "react";
 import Button from "./Components/Button";
 import FormGroup from "./Components/FormGroup";
 import {z} from "zod";
-import axios from "axios";
 import {useNavigate} from 'react-router-dom';
+import api from './api';
 
 export default function RestaurantList(){
     const navigate = useNavigate();
@@ -12,9 +12,7 @@ export default function RestaurantList(){
         navigate('/restaurants/'+id);
     }
     useEffect(() => {
-        axios.get('/api/restaurants/list', {
-            headers: {Authorization: 'Bearer '+sessionStorage.getItem('token')}
-        })
+        api.get('/restaurants/list')
         .then((res) => {
             setRestaurant(res.data.restaurants);
         })

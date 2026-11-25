@@ -24,12 +24,13 @@
 
 ## Frontend (React)
 - [x] `[id].jsx`: leggere le info del ristorante dalla risposta di /menu (stato `props`)
-- [ ] `[id].jsx`: rinominare lo stato `props` (es. `restaurant`) quando si vuole ripulire
+- [x] `[id].jsx`: rinominare lo stato `props` in `restaurant` (init `null`, un solo `{restaurant && ...}`)
+- [x] `[id].jsx`: `class=` → `className=` (riga carrello vuoto) e `key` invertite sui pulsanti +/-
 - [x] CartContext: salvare in sessionStorage (chiave `cart`)
 - [x] CartContext: `removeFromCart` modifica `item.quantity` direttamente (con StrictMode può scalare di 2)
 - [x] CartContext: togliere i `console.log` in `addToCart`; aggiornare il commento "parte come un array vuoto"
-- [ ] Navigazione interna con useNavigate/Link invece di window.location
-- [ ] Login.jsx, RestaurantList.jsx e Register.jsx (`err.response.data.ko`): `?.` su `response` nel catch
+- [x] Navigazione interna con useNavigate/Link invece di window.location (resta `window.location` solo per il redirect a Stripe)
+- [x] Login.jsx, RestaurantList.jsx e Register.jsx: `?.` su `e.response` nel catch (Register mostra `detail` solo se stringa)
 - [x] Register.jsx: URL `api/user/register` → `/api/user/register`
 - [x] main.jsx: import di Register duplicato
 - [x] Register.jsx: schema zod con `name`/`lastname`
@@ -39,7 +40,8 @@
 - [x] Register.jsx: `FormGroup` name/lastname con `errorName`/`errorLastname`
 - [x] Register.jsx: errori zod azzerati al nuovo invio
 - [x] Register.jsx: messaggio di successo prima del redirect a `/login`
-- [ ] Chiamate protette tramite src/api.js
+- [x] Chiamate protette tramite src/api.js (interceptor token + 401 → /login)
+- [x] RestaurantList.jsx e [id].jsx: togliere `import axios` (non più usato)
 - [ ] Rotta `/` mancante
 
 ## Specifiche (frontend/CLAUDE.md)
@@ -53,5 +55,5 @@
 
 ## Infrastruttura
 - [x] git init (+ `.gitignore` nella radice)
-- [ ] Primo commit
+- [x] Primo commit e push su `origin/main` (github.com/gaetano1984/python-food-delivery)
 - [x] filament/Dockerfile mancante (ricreato: php:8.4-cli + composer)
